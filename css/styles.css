@@ -1,141 +1,278 @@
 /*
 font-family: 'Roboto', sans-serif;
+font-family: 'Righteous', cursive;
 */
 body{
-    width: 100%;
-    height: 100%;
     font-family: 'Roboto', sans-serif;
-    background-color: #EEF9BF;
+    background-color: #EEEEEE;
+    width: 415px;
+    z-index: -1;
+    margin: auto;
+}
+
+
+header{
+    background-color: #CF2B2B;
+    height: 92px;
+    width: 415px;
+    display: flex;
+    align-items: center; 
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+header p{
+    color: #FFFFFF;
+    font-size: 44px;
+    margin-top: 10px;
+    margin-left: 20px; 
+}
+
+h1{
+    margin-left: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #333333;
+    margin-top: 10px;
+    margin-bottom: 10px;    
+}
+
+h2{
+    margin-left: 15px;
+    font-size: 15px;
+    font-weight: 300;
+    color: #A6A6A6;
+    margin-bottom: 12px;
+
+}
+
+h3{
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+p{
+    font-family: 'Righteous', cursive;
+}
+
+span{
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-bottom: 18px;
+    margin-left: 20px;
+}
+
+.container_all{
+    margin: 96px auto 108px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    z-index: 0;
+    overflow: hidden;
+    position: relative;
 }
 
-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: #75B79E;
-    font-size: 56px;
-    font-weight: 700;
-    margin-top: 40px;
-    margin-bottom: 47px;
-    margin-left: 270px;
+.container_section{
+    margin-top: 27px;
+    padding-left: 19px;
 }
 
-.card_container{
-    width: 1200px;
-    height: 400px;
+.container_section p{
+    margin-bottom: 17px;
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.food_picture{
+    width: 144px;
+    height: 87px;
+    margin: 18px 9px 14px 8px;
+    border: solid 1px #EEEEEE;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.active{
+    border: 10px solid black;
+}
+
+.scroll{
+    width: 395px;
+    display: inline-flex;
+    overflow-x: scroll;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 414px;
+    height: 92px;
+    background-color: #FFFFFF;
     display: flex;
+    align-items: center; 
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    margin-top: 16px;
 }
 
-.parrot_card{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #A7E9AF;
-    border: 1px solid #99CEA8;
-    border-radius: 5px;
-    width: 117px;
-    height: 146px;
-    margin-right: 44px;
-    margin-bottom: 34px;
+button{
+    background-color: #CBCBCB;
+    width: 364px;
+    height: 61px;
+    border-radius: 50px;
+    border: none;    
+}
+
+a{
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 20px;    
+}
+
+.food_option{
+    width: 172px;
+    margin-right: 19px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
     cursor: pointer;
     position: relative;
-    transition: all 1300ms;
+    box-sizing: border-box;
+    border: solid 3px white;
 }
 
-.parrot_back{
-    width: 100px;
-    height: 100px;
+.food_chosen,
+.drink_chosen,
+.dessert_chosen{
+    box-sizing: border-box;
+    border: 3px green solid;
+}
+
+ion-icon{
+    width: 19px;
+    height: 19px;
     position: absolute;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    -o-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    transition-delay: 100ms
+    bottom: 8px;
+    right: 9px;
+    color: green;
+    display: none;
 }
 
-.parrot_front{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    opacity: 0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    -o-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    transition-delay: 100ms
+.food_chosen>ion-icon,
+.drink_chosen>ion-icon,
+.dessert_chosen>ion-icon{
+    display: block;
 }
 
-.hidden{
-    transform: rotateY(180deg);
-    background-color: lightblue;
-    cursor: auto;
-    pointer-events:none;
+.order_button{
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF;
 }
 
-.hidden>.parrot_back{
-    opacity: 0;
+.payout{
+    background-color: #32B72F;
+    font-weight: 700;
+    cursor: pointer;
 }
 
-.hidden>.parrot_front{
-    opacity: 1;
+.confirmation{
+    width: 377px;
+    height: 353px;
+    background-color: #50D074;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+    z-index: 3;
+    margin-left: 23px;
+    bottom: 230px;
+    display: block;
+    position: fixed;
 }
 
-.disable{
-    pointer-events:none;
-    opacity: 0.8;
-}
-
-.time_container{
-    width: 70px;
-    height: 100px;
-    background-color: #A7E9AF;
-    padding: 20px;
-    border-radius: 5px;
-    margin: 20px auto;
+.confirmation h1{
+    font-weight: 700;
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-top: 21px;
+    margin-bottom: 28px;
     text-align: center;
 }
 
-.time{
-    color: #183059;
-    font-size: 66px;
+.confirmation_button{
+    width: 329px;
+    height: 52px;
+    background-color: #FFFFFF;
+    color: #50D074;
+    font-weight: 700;
+    font-size: 22px;
+    position: absolute;
+    bottom: 53px;
+    left: 24px;
+    cursor: pointer;
 }
 
-.label{
+.cancellation_button{
+    width: 329px;
+    height: 52px;
+    background-color: #50D074;
+    border: none;
     font-weight: 700;
-    color: #183059;
-    font-size: 17px;
-    margin-left: -13px;
+    font-size: 22px;
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.food_confirmation,
+.drink_confirmation,
+.dessert_confirmation{
+    display: flex;
+    vertical-align: center;
+    justify-content: space-between;
+}
+
+
+.food_confirmation h4,
+.drink_confirmation h4,
+.dessert_confirmation h4,
+.food_confirmation h5,
+.drink_confirmation h5,
+.dessert_confirmation h5{
+    color: white;
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 13px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.total_confirmation h4,
+.total_confirmation h5{
+    font-weight: 700;
+    font-size: 22px;
+    color: white;
+    margin-left: 25px;
+    margin-right: 25px;
     margin-top: 10px;
 }
 
+.total_confirmation{
+    display: flex;
+    justify-content: space-between;
+}
 
-@media only screen and (max-width: 613px){
+.total_confirmation h1{
+    font-weight: 700;
+    font-size: 22px;
+}
 
-    header{ 
-        width: 335px;
-        font-size: 36px;
-        text-align: center;
-        margin-left: 80px;
-    }
-
-    .time_container{
-        margin-left: 50px;
-    }
-
-    .card_container{
-        width: 335px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-left: 20px;
-    }
+.hidden{
+    display: none;
 }

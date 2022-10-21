@@ -1,123 +1,123 @@
-const div = document.querySelector(".card_container");
-let image_list = [`1`,`2`,`3`,`4`,`5`,`6`,`7`]
-let card_list = []
-let image = 0
-let selected_list = []
-let card1 = ""
-let card2 = ""
-let played = 0
-let order = 1
-let clickCount = 0
-let endCount = 0
-let cards = 0
-let time = 0;
+let payout_button = document.querySelector("button");
+payout_button.disabled = true;
+let selected_food, selected_drink, selected_dessert;
 
-function randomizeList(){
-    return Math.random() - 0.5;
+
+function chooseFood(food){
+  const select_food = document.querySelector(".food_chosen");
+
+  if (select_food !== null){
+    select_food.classList.remove("food_chosen")
+  }
+    food.classList.add("food_chosen"); 
+
+    selected_food = food.innerHTML;
+    activatePayout()     
 }
 
-function addCard(){
-    cards = 
-        Number(prompt("Quantas cartas você quer jogar? (entre 4 e 14, número par)"));
-    let i = 0
-    if (cards >= 4 && cards <= 14 && cards % 2 == 0){
-        image_list.sort(randomizeList)
-        while (i < cards){
-            let card = 
-                    `<div id="${Math.floor(order)}" onclick="turnCard(this)" class="parrot_card">
-                        <img class="parrot_back" src="./assets/back.png">
-                        <img class="parrot_front hidden" src="./assets/${image_list[Math.floor(image)]}.gif">
-                    </div>`
-            card_list.push(card)
-            i++
-            image += 0.5
-            order++
-        } 
-    }else{
-        return addCard()
-    }
-    card_list.sort(randomizeList)
-    for (let i=0; i < card_list.length; i++){        
-        div.innerHTML += card_list[i]
-    }
+function chooseDrink(drink){
+  const select_drink = document.querySelector(".drink_chosen");
 
+  if (select_drink !== null){
+    select_drink.classList.remove("drink_chosen")
+  }
+    drink.classList.add("drink_chosen");  
+
+    selected_drink = drink.innerHTML;
+    activatePayout()
 }
 
-function turnCard(parrot){
+function chooseDessert(dessert){
+  const select_dessert = document.querySelector(".dessert_chosen");
 
-    if (clickCount % 2 == 0){
-        parrot.classList.add("hidden")
-        parrot.classList.add(`selected1`)
-        selected_list.push(parrot)
-    }else{
-        parrot.classList.add("hidden")
-        parrot.classList.add(`selected2`)
-        selected_list.push(parrot)
-    }
+  if (select_dessert !== null){
+    select_dessert.classList.remove("dessert_chosen")
+  }
+    dessert.classList.add("dessert_chosen");  
 
-        clickCount ++
-    checkCard()
+    selected_dessert = dessert.innerHTML;
+    activatePayout()
 }
 
-function checkCard(){
-    card1 = document.querySelector(".selected1")
-    card2 = document.querySelector(".selected2")
-    if(selected_list.length == 2 && card1.innerHTML !== card2.innerHTML){
-        played += 1;
-        div.classList.add("disable")
-        setTimeout(() =>{
-            card1.classList.remove("hidden")
-            card2.classList.remove("hidden")
-            card1.classList.remove("selected1")
-            card2.classList.remove("selected2")
-            div.classList.remove("disable")
-        },1000)
-        selected_list = []
-    }else if (selected_list.length == 2 && card1.innerHTML === card2.innerHTML){
-        played += 1;
-        div.classList.add("disable")
-        setTimeout(() =>{
-            div.classList.remove("disable")
-            card1.classList.remove("selected1")
-            card2.classList.remove("selected2")
-        }, 1000)
-        endCount += 2
-        selected_list = []
-    }
-    if (endCount === cards){
-        endGame()
-    }
-}
-
-function endGame(){
-    let restart = ""
-    setTimeout(() =>{
-        alert(`Você ganhou em ${played} jogadas em ${time} segundos!`)
-        restartGame()
-    }, 1500)
-}
-
-function restartGame(){
-    restart = prompt("Você gostaria de reiniciar a partida? (sim ou não)")
-    clearInterval(add)
-    if (restart === "sim"){
-        location.reload()
-    }else if (restart === "não"){
-        return;
-    }else{
-        return restartGame();
-    }
-}
-
-function timeCount() {
-    add = setInterval(timeProgression, 1000);
-
-    function timeProgression() {
-      time++;
-      const div = document.querySelector(".time");
-      div.innerHTML = time;
-      if (time == 0) {
-        clearInterval(add);
+function activatePayout(){
+  if (selected_food !== undefined && 
+      selected_drink !== undefined &&
+      selected_dessert !== undefined){
+        const payout_text = document.querySelector("button");
+        payout_button.disabled = false
+        payout_button.classList.add("payout")
+        payout_text.innerHTML = "Fechar pedido"
       }
-    }
+}
+
+function messageOrder(){
+  const customer_name = prompt("Qual o seu nome?");
+  const customer_address = prompt("Qual é seu endereço?")
+  const food = (document.querySelector(".food_chosen>h1")).innerHTML;
+  const drink = (document.querySelector(".drink_chosen>h1")).innerHTML;
+  const dessert = (document.querySelector(".dessert_chosen>h1")).innerHTML;
+  let order_total = 0
+  let price_food = (document.querySelector(".food_chosen>h3")).innerHTML.replace("R$ ", "");
+  let price_drink = (document.querySelector(".drink_chosen>h3")).innerHTML.replace("R$ ", "");
+  let price_dessert = (document.querySelector(".dessert_chosen>h3")).innerHTML.replace("R$ ", "");
+  price_food = price_food.replace(",", ".");
+  price_drink = price_drink.replace(",", ".");
+  price_dessert = price_dessert.replace(",", ".");
+
+  order_total = Number(price_food) + 
+                Number(price_drink) + 
+                Number(price_dessert);
+                
+  const mensagem = `Olá, gostaria de fazer o pedido: \n- Prato: ${food} \n- Bebida: ${drink} \n - Sobremesa: ${dessert} \n Total: R$ ${order_total.toFixed(2)} 
+  \nNome: ${customer_name} \nEndereço: ${customer_address}`; 
+
+  const message = encodeURIComponent(mensagem);
+  window.open("https://wa.me/5521975490141?text=" + message, '_blank');
+}
+
+function orderCancel(){
+  const conf_window = document.querySelector(".confirmation");
+  conf_window.classList.add("hidden")
+
+}
+
+function orderConfirm(){
+  const conf_window = document.querySelector(".confirmation");
+  conf_window.classList.remove("hidden")
+  let order_total = 0
+
+  const food = (document.querySelector(".food_chosen>h1")).innerHTML;
+  const drink = (document.querySelector(".drink_chosen>h1")).innerHTML;
+  const dessert = (document.querySelector(".dessert_chosen>h1")).innerHTML;
+  let price_food = (document.querySelector(".food_chosen>h3")).innerHTML.replace("R$ ", "");
+  let price_drink = (document.querySelector(".drink_chosen>h3")).innerHTML.replace("R$ ", "");
+  let price_dessert = (document.querySelector(".dessert_chosen>h3")).innerHTML.replace("R$ ", "");
+  let confirm_food = (document.querySelector(".food_confirmation>h4"));
+  let confirm_drink = (document.querySelector(".drink_confirmation>h4"));
+  let confirm_dessert = (document.querySelector(".dessert_confirmation>h4"));
+  let confirm_food_price = (document.querySelector(".food_confirmation>h5"));
+  let confirm_drink_price = (document.querySelector(".drink_confirmation>h5"));
+  let confirm_dessert_price = (document.querySelector(".dessert_confirmation>h5"));
+  let confirm_order_total = (document.querySelector(".total_confirmation>h5"))
+
+  confirm_food_price.innerHTML = `${price_food}`
+  confirm_drink_price.innerHTML = `${price_drink}`
+  confirm_dessert_price.innerHTML = `${price_dessert}`
+
+
+  price_food = price_food.replace(",", ".")
+  price_drink = price_drink.replace(",", ".")
+  price_dessert = price_dessert.replace(",", ".")
+
+  order_total = Number(price_food) + 
+  Number(price_drink) + 
+  Number(price_dessert);
+
+  order_total = order_total.toFixed(2).toString().replace(".", ",")
+
+  confirm_food.innerHTML = `${food}`
+  confirm_drink.innerHTML = `${drink}`
+  confirm_dessert.innerHTML = `${dessert}`
+  confirm_order_total.innerHTML = `R$ ${order_total}`
+
 }

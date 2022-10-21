@@ -7,32 +7,145 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link 
         href=
-            "https://fonts.googleapis.com/css2?family=Roboto:
-            ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap"  
+            "https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
         rel=
             "stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta charset="UTF-8" />
-    <title>Parrot Card Game </title>
+    <title>Driveneats </title>
     <link rel = "icon" href = 
-    "./assets/parrot_icon.svg" 
+    "./assets/food_icon.svg" 
             type = "image/x-icon">
 </head>
-<body onload="addCard(), timeCount()">
-    <div class="container">
-        <header>
-            PARROT CARD GAME
-            <div class="time_container">
-                <div class="time">
-                  0
+<body>
+    <header>           
+        <p>DrivenEats</p>
+        <span>Sua comida em 6 minutos</span>
+    </header>
+    <div class="container_all">  
+        <div id="comida" data-test="dishes" class="container_section">
+            <p>Primeiro, seu prato</p>
+            <div class="scroll">
+                <div onclick="chooseFood(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/frango_yin_yang 1.png"/>                     
+                    <h1 data-test="food-title">Frango Yin Yang</h1>
+                    <h2>Um pouco de batata, um pouco de salada</h2>
+                    <h3 data-test="food-price">R$ 24,90</h3>
                 </div>
-                <div class="label">Segundo(s)</div>
-            </div> 
-        </header>
-     
-        <div class="card_container">
+                <div onclick="chooseFood(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/fried_rice.jfif"/>
+                    <h1 data-test="food-title">Arroz frito</h1>
+                    <h2>Arroz frito com proteína a escolha</h2>
+                    <h3 data-test="food-price">R$ 35,90</h3>
+                </div>
+                <div onclick="chooseFood(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/yakisoba.jpg"/>
+                    <h1 data-test="food-title">Yakisoba</h1>
+                    <h2>Yakisoba com proteína a escolha</h2>
+                    <h3 data-test="food-price">R$ 29,90</h3>
+                </div>
+                <div onclick="chooseFood(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/salada.png"/>
+                    <h1 data-test="food-title">Salada de Repolho</h1>
+                    <h2>Típica salada de repolho e cenoura</h2>
+                    <h3 data-test="food-price">R$ 14,90</h3>
+                </div>
+            </div>
         </div>
+        <div id="bebida" data-test="drinks" class="container_section">
+            <p>Agora, sua bebida</p>
+            <div class="scroll">
+                <div onclick="chooseDrink(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/coquinha_gelada 1.png"/>
+                    <h1 data-test="food-title">Refrigerante 350ml</h1>
+                    <h2>Sabores diversos</h2>
+                    <h3 data-test="food-price">R$ 5,90</h3>
+                </div>
+                <div onclick="chooseDrink(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/ice_tea.jpg"/>
+                    <h1 data-test="food-title">Chá Gelado</h1>
+                    <h2>Com ou sem mate</h2>
+                    <h3 data-test="food-price">R$ 4,90</h3>
+                </div>
+                <div onclick="chooseDrink(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/suco.jpg"/>
+                    <h1 data-test="food-title">Suco da fruta</h1>
+                    <h2>Sabores variados</h2>
+                    <h3 data-test="food-price">R$ 7,90</h3>
+                </div>
+                <div onclick="chooseDrink(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/agua.jpg"/>
+                    <h1 data-test="food-title">Água Mineral</h1>
+                    <h2>Garrafa 500ml</h2>
+                    <h3 data-test="food-price">R$ 2,90</h3>
+                </div>    
+            </div>
+        </div>
+        <div id="sobremesa" data-test="desserts" class="container_section">
+            <p>Por fim, sua sobremesa</p>
+            <div class="scroll">
+                <div onclick="chooseDessert(this)"  data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/pudim 1.png"/>
+                    <h1 data-test="food-title">Pudim</h1>
+                    <h2>Pudim de leite</h2>
+                    <h3 data-test="food-price">R$ 8,90</h3>
+                </div>
+                <div onclick="chooseDessert(this)"  data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/mochi.jpg"/>
+                    <h1 data-test="food-title">Mochi</h1>
+                    <h2>Com pasta de feijão</h2>
+                    <h3 data-test="food-price">R$ 9,90</h3>
+                </div>
+                <div onclick="chooseDessert(this)" data-test="food-option" class="food_option"">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/egg_tart.jpg"/>
+                    <h1 data-test="food-title">Torta de Ovos</h1>
+                    <h2>Delicatesse chinesa</h2>
+                    <h3 data-test="food-price">R$ 5,90</h3>
+                </div>
+                <div onclick="chooseDessert(this)" data-test="food-option" class="food_option">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <img class="food_picture" src="./assets/brownie.jpg"/>
+                    <h1 data-test="food-title">Brownie Natural</h1>
+                    <h2>Não é o da felicidade</h2>
+                    <h3 data-test="food-price">R$ 8,90</h3>
+                </div>   
+            </div>
+        </div>
+        <footer>
+            <button data-test="finish-button" class="order_button" onclick="orderConfirm()" disabled>
+                Selecione os 3 itens</br> para fechar o pedido
+            </button>
+        </footer>
+        <div data-test="confirmation-dialog" class="confirmation hidden">
+            <h1>Confirme seu pedido</h1>
+            <div class="food_confirmation">
+                <h4></h4><h5></h5>
+            </div>
+            <div class="drink_confirmation">
+                <h4></h4><h5></h5>
+            </div>
+            <div class="dessert_confirmation">
+                <h4></h4><h5></h5>
+            </div>
+            <div class="total_confirmation">
+                <h4>TOTAL</h4><h5></h5>
+            </div>
+            <button onclick="messageOrder()" class="confirmation_button">Tudo certo, pode pedir!</button>
+            <button onclick="orderCancel()"class="cancellation_button">Cancelar</button>
+        </div>   
     </div>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./scripts/scripts.js"></script>
 </body>
 </html>
