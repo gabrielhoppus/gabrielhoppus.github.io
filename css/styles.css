@@ -129,13 +129,16 @@ header{
 
     header{ 
         width: 335px;
-        font-size: 36px;
+        font-size: 26px;
         text-align: center;
-        margin-left: 80px;
     }
 
     .time_container{
-        margin-left: 50px;
+        margin-left: 0px;
+    }
+
+    .label{
+        display: none;
     }
 
     .card_container{
