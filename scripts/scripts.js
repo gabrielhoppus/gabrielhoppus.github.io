@@ -11,6 +11,7 @@ let clickCount = 0
 let endCount = 0
 let cards = 0
 let time = 0;
+let restart = ""
 
 function randomizeList(){
     return Math.random() - 0.5;
@@ -25,7 +26,7 @@ function addCard(){
         while (i < cards){
             let card = 
                     `<div id="${Math.floor(order)}" onclick="turnCard(this)" class="parrot_card">
-                        <img class="parrot_back" src="./assets/back.png">
+                        <img class="parrot_back" src="./assets/escudo.png">
                         <img class="parrot_front hidden" src="./assets/${image_list[Math.floor(image)]}.gif">
                     </div>`
             card_list.push(card)
@@ -90,17 +91,16 @@ function checkCard(){
 }
 
 function endGame(){
-    let restart = ""
     setTimeout(() =>{
-        alert(`Você ganhou em ${played} jogadas em ${time} segundos!`)
+        alert(`Vasco`)
         restartGame()
     }, 1500)
 }
 
 function restartGame(){
-    restart = prompt("Você gostaria de reiniciar a partida? (sim ou não)")
+    restart = prompt("Você gostaria de reiniciar a partida? (vasco ou não)")
     clearInterval(add)
-    if (restart === "sim"){
+    if (restart === "vasco"){
         location.reload()
     }else if (restart === "não"){
         return;
@@ -116,8 +116,5 @@ function timeCount() {
       time++;
       const div = document.querySelector(".time");
       div.innerHTML = time;
-      if (time == 0) {
-        clearInterval(add);
-      }
     }
 }
