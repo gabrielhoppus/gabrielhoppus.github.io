@@ -3,36 +3,42 @@ let image_list = [`1`,`2`,`3`,`4`,`5`,`6`,`7`]
 let card_list = []
 let image = 0
 let selected_list = []
-let card1 = ""
-let card2 = ""
-let played = 0
-let order = 1
-let clickCount = 0
-let endCount = 0
-let cards = 0
-let time = 0;
-let restart = ""
+let first_card = ""
+let second_card = ""
+let played_count = 0
+let card_order = 1
+let click_count = 0
+let end_counter = 0
+let card_quantity = 0
+let time_counter = 0;
 
 function randomizeList(){
+    //função para randomizar os elementos do jogo
     return Math.random() - 0.5;
 }
 
 function addCard(){
-    cards = 
+    /*Função que adiciona a quantidade de cartas ao jogo
+    1. Pede um número
+    2. Embaralha as imagens das cartas
+    3. Cria a div com a imagem criada, de duas em duas imagens e adiciona isso a uma lista
+    4. Embaralha as cartas e coloca no campo*/
+
+    card_quantity = 
         Number(prompt("Quantas cartas você quer jogar? (entre 4 e 14, número par)"));
     let i = 0
-    if (cards >= 4 && cards <= 14 && cards % 2 == 0){
+    if (card_quantity >= 4 && card_quantity <= 14 && card_quantity % 2 == 0){
         image_list.sort(randomizeList)
-        while (i < cards){
+        while (i < card_quantity){
             let card = 
-                    `<div id="${Math.floor(order)}" onclick="turnCard(this)" class="parrot_card">
-                        <img class="parrot_back" src="./assets/escudo.png">
+                    `<div id="${Math.floor(card_order)}" onclick="turnCard(this)" class="parrot_card">
+                        <img class="parrot_back" src="./assets/back.png">
                         <img class="parrot_front hidden" src="./assets/${image_list[Math.floor(image)]}.gif">
                     </div>`
             card_list.push(card)
             i++
             image += 0.5
-            order++
+            card_order++
         } 
     }else{
         return addCard()
@@ -45,8 +51,9 @@ function addCard(){
 }
 
 function turnCard(parrot){
+    /*Função que marca as cartas viaradas para comparação */
 
-    if (clickCount % 2 == 0){
+    if (click_count % 2 == 0){
         parrot.classList.add("hidden")
         parrot.classList.add(`selected1`)
         selected_list.push(parrot)
@@ -56,51 +63,60 @@ function turnCard(parrot){
         selected_list.push(parrot)
     }
 
-        clickCount ++
+        click_count ++
     checkCard()
 }
 
 function checkCard(){
-    card1 = document.querySelector(".selected1")
-    card2 = document.querySelector(".selected2")
-    if(selected_list.length == 2 && card1.innerHTML !== card2.innerHTML){
-        played += 1;
+    /*Função que compara as cartas e checa se elas são iguais 
+    1. Se as cartas forem iguais, mantém o atributo hidden que mantém a carta desvirada
+        e remove a maracação de selecionada para poder aplicar no próximo set de cartas
+    2. Se as cartas forem diferentes, remove todos os atributos para o estado original
+    3. mantém um contador de jogadas
+    4. Condicional de fim de jogo que compara quantas cartas estão desviradas e quantas
+        cartas tem no total*/
+    first_card = document.querySelector(".selected1")
+    second_card = document.querySelector(".selected2")
+    if(selected_list.length == 2 && first_card.innerHTML !== second_card.innerHTML){
+        played_count += 1;
         div.classList.add("disable")
         setTimeout(() =>{
-            card1.classList.remove("hidden")
-            card2.classList.remove("hidden")
-            card1.classList.remove("selected1")
-            card2.classList.remove("selected2")
+            first_card.classList.remove("hidden")
+            second_card.classList.remove("hidden")
+            first_card.classList.remove("selected1")
+            second_card.classList.remove("selected2")
             div.classList.remove("disable")
         },1000)
         selected_list = []
-    }else if (selected_list.length == 2 && card1.innerHTML === card2.innerHTML){
-        played += 1;
+    }else if (selected_list.length == 2 && first_card.innerHTML === second_card.innerHTML){
+        played_count += 1;
         div.classList.add("disable")
         setTimeout(() =>{
             div.classList.remove("disable")
-            card1.classList.remove("selected1")
-            card2.classList.remove("selected2")
+            first_card.classList.remove("selected1")
+            second_card.classList.remove("selected2")
         }, 1000)
-        endCount += 2
+        end_counter += 2
         selected_list = []
     }
-    if (endCount === cards){
+    if (end_counter === card_quantity){
         endGame()
     }
 }
 
 function endGame(){
+    /*Alerta de fim de jogo */
     setTimeout(() =>{
-        alert(`Vasco`)
+        alert(`Você ganhou em ${played_count} jogadas e em ${time_counter} segundos!`)
         restartGame()
     }, 1500)
 }
 
 function restartGame(){
-    restart = prompt("Você gostaria de reiniciar a partida? (vasco ou não)")
+    /*Prompt após o fim do jogo para reiniciar a partida */
+    const restart = prompt("Você gostaria de reiniciar a partida? (sim ou não)")
     clearInterval(add)
-    if (restart === "vasco"){
+    if (restart === "sim"){
         location.reload()
     }else if (restart === "não"){
         return;
@@ -110,11 +126,15 @@ function restartGame(){
 }
 
 function timeCount() {
+    /*Contador de tempo do jogo */
     add = setInterval(timeProgression, 1000);
 
     function timeProgression() {
-      time++;
+      time_counter++;
       const div = document.querySelector(".time");
-      div.innerHTML = time;
+      div.innerHTML = time_counter;
+      if (time_counter == 0) {
+        clearInterval(add);
+      }
     }
 }

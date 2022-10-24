@@ -2,13 +2,10 @@
 font-family: 'Roboto', sans-serif;
 */
 body{
-    background-image: url(/assets/vasco_sede.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-color: black;
     width: 100%;
     height: 100%;
     font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,8 +18,7 @@ header{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: black;
-    text-shadow: 2px 2px #ff0000;
+    color: #75B79E;
     font-size: 56px;
     font-weight: 700;
     margin-top: 40px;
@@ -36,14 +32,15 @@ header{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-left: 44px;
 }
 
 .parrot_card{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    border: 1px solid black;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
     border-radius: 5px;
     width: 117px;
     height: 146px;
@@ -55,8 +52,8 @@ header{
 }
 
 .parrot_back{
-    border: 2px solid black;
-    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
     position: absolute;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
@@ -67,10 +64,8 @@ header{
 
 .parrot_front{
     position: absolute;
-    border: 2px solid black;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     opacity: 0;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
@@ -81,7 +76,7 @@ header{
 
 .hidden{
     transform: rotateY(180deg);
-    background-color: black;
+    background-color: lightblue;
     cursor: auto;
     pointer-events:none;
 }
@@ -100,28 +95,29 @@ header{
 }
 
 .time_container{
-    width: 200px;
-    height: 200px;
+    width: 70px;
+    height: 100px;
+    background-color: #A7E9AF;
     padding: 20px;
     border-radius: 5px;
-    margin: 20px auto;
+    margin: 10px;
     text-align: center;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
 }
 
 .time{
-    text-shadow: 2px 2px #ff0000;
-    color: black;
+    color: #183059;
     font-size: 66px;
-
 }
 
 .label{
-    text-shadow: 2px 2px #ff0000;
     font-weight: 700;
-    color: black;
-    font-size: 36px;
-
+    color: #183059;
+    font-size: 17px;
+    margin-left: -13px;
+    margin-top: 10px;
 }
 
 
@@ -129,16 +125,13 @@ header{
 
     header{ 
         width: 335px;
-        font-size: 26px;
+        font-size: 36px;
         text-align: center;
+        margin-left: 80px;
     }
 
     .time_container{
-        margin-left: 0px;
-    }
-
-    .label{
-        display: none;
+        margin-left: 50px;
     }
 
     .card_container{
