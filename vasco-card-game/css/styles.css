@@ -1,0 +1,154 @@
+/*
+font-family: 'Roboto', sans-serif;
+*/
+body{
+    background-image: url(/assets/vasco_sede.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-shadow: 2px 2px #ff0000;
+    font-size: 46px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 47px;
+}
+
+.card_container{
+    width: 1200px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 44px;
+}
+
+.parrot_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 117px;
+    height: 146px;
+    margin-right: 44px;
+    margin-bottom: 34px;
+    cursor: pointer;
+    position: relative;
+    transition: all 1300ms;
+}
+
+.parrot_back{
+    border: 2px solid black;
+    box-sizing: border-box;
+    position: absolute;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    -o-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    transition-delay: 100ms
+}
+
+.parrot_front{
+    position: absolute;
+    border: 2px solid black;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    -o-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    transition-delay: 100ms
+}
+
+.hidden{
+    transform: rotateY(180deg);
+    background-color: black;
+    cursor: auto;
+    pointer-events:none;
+}
+
+.hidden>.parrot_back{
+    opacity: 0;
+}
+
+.hidden>.parrot_front{
+    opacity: 1;
+}
+
+.disable{
+    pointer-events:none;
+    opacity: 0.8;
+}
+
+.time_container{
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+}
+
+.time{
+    text-shadow: 2px 2px #ff0000;
+    color: black;
+    font-size: 66px;
+
+}
+
+.label{
+    text-shadow: 2px 2px #ff0000;
+    font-weight: 700;
+    color: black;
+    font-size: 36px;
+    margin-left: 10px;
+
+}
+
+
+@media only screen and (max-width: 613px){
+
+    header{ 
+        width: 335px;
+        font-size: 36px;
+        text-align: center;
+        margin-left: 80px;
+    }
+
+    header p{
+        display: none;
+    }
+
+    .card_container{
+        width: 335px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+
+    .label{
+        display: none;
+    }
+}
